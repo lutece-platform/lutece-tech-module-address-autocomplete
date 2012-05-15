@@ -2,7 +2,6 @@
 response.setHeader("Pragma", "no-cache");
 response.setHeader("Cache-Control", "no-cache");
 response.setDateHeader("Expires", 0);
-response.setHeader("Access-Control-Allow-Origin", "*");
 %>
 <%@ page contentType="text/javascript;" %>
 <%@ page import="fr.paris.lutece.portal.service.util.AppPropertiesService"%>
@@ -13,14 +12,14 @@ function createAutocomplete(jquerySelector) {
 	//Waiting for the page to be fully loaded
 	setTimeout(function(){
 		$(document).ready(function() {
-			$(".autocomplete_input").each(function() {
+			$(jquerySelector).each(function() {
 				//Create autocomplete inputs
 				$(this).autocomplete({
-					source: function(request) {
+					source: function(request, response) {
                    		$.ajax({
                       	 	url: '<%=AppPropertiesService.getProperty( "address-autocomplete.urlWS" ) %>',
-                       		type: 'GET',
                        		async: false,
+                       		dataType: 'jsonp',
                        		data: {
                         		 addressPrefix: request.term,
                           		 zone: '<%=AppPropertiesService.getProperty( "address-autocomplete.zone" ) %>',
@@ -28,14 +27,23 @@ function createAutocomplete(jquerySelector) {
 	                          	 maxResults: '<%=AppPropertiesService.getProperty("address-autocomplete.maxResults" ) %>',
 	                          	 clientId: '<%=AppPropertiesService.getProperty( "address-autocomplete.clientId" ) %>'
                       	 	},
-                      	 	success: function(data) {
-                      	 		alert(data);
-                      	 	},
-                      	 	error: function(data, textStatus, ex) {
-                      	 	/*if (jqxhr.readyState == 0 || jqxhr.status == 0) {    
-    							return; //Skip this error   
-  							}*/   
-                      	 		console.info(data);
+                      	 	success: function(data){
+								//Erreur dans la requete
+								if(data.error){
+									$("#labelAutocomplete").css('display', 'block'); 
+									$("#labelAutocomplete").text(data.error.message);
+								}
+								
+								//Mise a jour de la liste deroulante
+								else {
+									response( $.map( data.result, function( item ) {
+										return {
+											label: item,
+											value: item
+										}
+									}));
+									$("#labelAutocomplete").css('display', 'none'); 
+								}
                       	 	}
                    	 	})
                		 },
@@ -43,5 +51,5 @@ function createAutocomplete(jquerySelector) {
 				});
     		});
 		});
-	}, 1000);
+	}, 1500);
 }
