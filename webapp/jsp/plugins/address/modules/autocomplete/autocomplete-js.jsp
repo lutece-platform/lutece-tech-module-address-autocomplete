@@ -2,6 +2,7 @@
 response.setHeader("Pragma", "no-cache");
 response.setHeader("Cache-Control", "no-cache");
 response.setDateHeader("Expires", 0);
+response.setHeader("Access-Control-Allow-Origin", "*");
 %>
 <%@ page contentType="text/javascript;" %>
 <%@ page import="fr.paris.lutece.portal.service.util.AppPropertiesService"%>
@@ -31,6 +32,9 @@ function createAutocomplete(jquerySelector) {
                       	 		alert(data);
                       	 	},
                       	 	error: function(data, textStatus, ex) {
+                      	 	/*if (jqxhr.readyState == 0 || jqxhr.status == 0) {    
+    							return; //Skip this error   
+  							}*/   
                       	 		console.info(data);
                       	 	}
                    	 	})
