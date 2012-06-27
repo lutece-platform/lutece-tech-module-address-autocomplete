@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>module-address-autocomplete</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Lutece Address module for auto-completion</name>
     
     <repositories>
@@ -37,9 +37,9 @@
     </properties>
     
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/module-address-autocomplete</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/module-address-autocomplete</developerConnection>
-        <url>http://dev.lutece.paris.fr/wsvn/lutece/portal/trunk/plugins/technical/module-address-autocomplete/</url>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/tags/module-address-autocomplete-1.0.0</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/tags/module-address-autocomplete-1.0.0</developerConnection>
+        <url>http://dev.lutece.paris.fr/wsvn/lutece/portal/tags/module-address-autocomplete-1.0.0</url>
     </scm>
     
 </project>
