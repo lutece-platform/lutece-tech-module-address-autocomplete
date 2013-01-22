@@ -3,7 +3,7 @@ response.setHeader("Pragma", "no-cache");
 response.setHeader("Cache-Control", "no-cache");
 response.setDateHeader("Expires", 0);
 %>
-<%@ page contentType="text/javascript;" %>
+<%@ page contentType="text/javascript" %>
 <%@ page import="fr.paris.lutece.portal.service.util.AppPropertiesService"%>
 
 
