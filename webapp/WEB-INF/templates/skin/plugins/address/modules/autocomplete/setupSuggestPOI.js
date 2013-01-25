@@ -1,4 +1,4 @@
-(function() {
+(function($) {
 
 	// Script dynamique (par template) de mise en place de la configuration de l'appel à SuggestPOI
 	
@@ -14,15 +14,10 @@
     var PROP_PARAM_CLIENT_ID = "suggestPOI.param.clientId";
     
     $config[PROP_WS_URL] = "${ws_url}";
-    $config[PROP_PROP_UI_DELAY] = parseInt("${ui_delay}", 10);
+    $config[PROP_UI_DELAY] = parseInt("${ui_delay}", 10);
     $config[PROP_PARAM_QUERY_MIN_LENGTH] = parseInt("${param_query_minLength}", 10);
     $config[PROP_PARAM_TYPES_DEFAULT] = "${param_types_default}";
     $config[PROP_PARAM_NB_RESULTS_DEFAULT] = parseInt("${param_nbResults_default}", 10);
     $config[PROP_PARAM_CLIENT_ID] = "${param_clientId}";
-    
-    // Inclusion de la source de SuggestPOI
-    
-    $.getScript("${base_url}/js/plugins/address/modules/autocomplete/suggestPOI.js");
      
-})();
-
+})(jQuery);
