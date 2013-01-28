@@ -28,7 +28,7 @@
         
         suggestPOI: function(options, arg) {
         
-        	if (!!console) {
+        	if (typeof(console) !== "undefined") {
         		console.debug(["SuggestPOI setup on:", this]);
         	}
         
@@ -38,7 +38,7 @@
             };
             
             options = (
-        		!!options && typeof(options) === "object" ?
+        		typeof(options) === "object" ?
 				$.extend({}, defaultOptions, options) : defaultOptions
     		);
             
@@ -100,7 +100,7 @@
 	                
 	                    if (typeof(data.error) !== "undefined") {
 	                    	
-	                    	if (!!console) {
+	                    	if (typeof(console) !== "undefined") {
 				            	console.error(data.error);
 				            }
 	            
@@ -124,7 +124,7 @@
 	            
 	                error: function (xhr, ajaxOptions, thrownError) {
 	                    
-	                    if (!!console) {
+	                    if (typeof(console) !== "undefined") {
 	                        console.error([thrownError, xhr, ajaxOptions]);
 	                    }
 	                    
@@ -136,7 +136,7 @@
             // Un élément a été sélectionné
 	        select: function(event, ui) {
 	        
-	            if (!!(ui.item)) {
+	            if (typeof(ui.item) !== "undefined") {
                     $(this).trigger($.Event(EVT_SELECT, ui.item));
 	            }
 	        },
