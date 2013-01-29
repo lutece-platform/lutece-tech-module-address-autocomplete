@@ -13,8 +13,9 @@
     var PROP_PARAM_NB_RESULTS_DEFAULT = "suggestPOI.param.nbResults.default";
     var PROP_PARAM_CLIENT_ID = "suggestPOI.param.clientId";
     
-    var EVT_SELECT = "MAA_SuggestPOI_Select"
-    var EVT_ERROR = "MAA_SuggestPOI_Error";
+    var EVT_NS_SPOI = ".suggestPOI";
+    var EVT_SELECT = "select"
+    var EVT_ERROR = "error";
     
     var DATATYPE_JSON = "json";
     var DATATYPE_JSONP = "jsonp";
@@ -151,7 +152,7 @@
 	    });
     };
     
-    $.suggestPOI.EVT_SELECT = EVT_SELECT; // Choix de POI effectué
-    $.suggestPOI.EVT_ERROR = EVT_ERROR; // Erreur survenue
+    $.suggestPOI.EVT_SELECT = EVT_SELECT + EVT_NS_SPOI; // Choix de POI effectué
+    $.suggestPOI.EVT_ERROR = EVT_ERROR + EVT_NS_SPOI; // Erreur survenue
 
 })(jQuery);
