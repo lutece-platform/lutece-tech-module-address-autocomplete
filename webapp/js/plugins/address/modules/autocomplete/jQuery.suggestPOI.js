@@ -29,8 +29,8 @@
         
         suggestPOI: function(options, arg) {
         
-        	if (typeof(console) !== "undefined") {
-        		console.debug(["SuggestPOI setup on:", this]);
+        	if (typeof(console) != "undefined") {
+        		console.log(["SuggestPOI setup on:", this]);
         	}
         
             var defaultOptions = {
