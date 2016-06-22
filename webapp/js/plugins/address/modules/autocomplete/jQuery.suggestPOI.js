@@ -7,9 +7,12 @@
     var $config = $MAA.config || ($MAA.config = {});
     
     var PROP_WS_URL = "suggestPOI.ws.url";
+    var PROP_DATATYPE = "suggestPOI.ws.datatype";
+    var PROP_API_INPUT = "suggestPOI.ws.apiinput";
     var PROP_UI_DELAY = "suggestPOI.ui.delay";
     var PROP_PARAM_QUERY_MIN_LENGTH = "suggestPOI.param.query.minLength";
     var PROP_PARAM_TYPES_DEFAULT = "suggestPOI.param.types.default";
+    var PROP_PARAM_BANTYPE_DEFAULT = "suggestPOI.param.bantype.default";
     var PROP_PARAM_NB_RESULTS_DEFAULT = "suggestPOI.param.nbResults.default";
     var PROP_PARAM_CLIENT_ID = "suggestPOI.param.clientId";
     
@@ -19,8 +22,20 @@
     
     var DATATYPE_JSON = "json";
     var DATATYPE_JSONP = "jsonp";
+
+    var APIINPUT_SUGGESTPOI = "SUGGESTPOI";
+    var APIINPUT_BAN = "BAN";
     
     var SEP_TYPES = ",";
+
+    //Compatibility with older version where the APIINPUT and DATATYPE were not given.
+    //Only SuggestPoi was available. An app could have overriden PROP_WS_URL, and now
+    //we default PROP_DATATYPE and PROP_API_INPUT to the values for BAN. So attempt
+    //to detect this situation and revert to the correct values for SuggestPOI
+    if ($config[PROP_WS_URL].indexOf("SuggestPOI") > -1) {
+        $config[PROP_DATATYPE] = DATATYPE_JSONP;
+        $config[PROP_API_INPUT] = APIINPUT_SUGGESTPOI;
+    }
     
     // Pattern de création d'un nouveau plugin jQuery.
     // Rajoute une méthode suggestPOI() à tout objet jQuery sélectionné dans le DOM.
@@ -35,6 +50,7 @@
         
             var defaultOptions = {
                 types: $config[PROP_PARAM_TYPES_DEFAULT],
+                bantype: $config[PROP_PARAM_BANTYPE_DEFAULT],
                 nbResults: $config[PROP_PARAM_NB_RESULTS_DEFAULT]
             };
             
@@ -69,6 +85,7 @@
               
         var nbResults = options.nbResults;
         var types = options.types;
+        var bantype = options.bantype;
         
         if ($.isArray(types)) {
             types = types.join(SEP_TYPES);
@@ -84,18 +101,29 @@
 	        source: function(input, forward) {
 	        	
 	        	var jThis = $(this);
-	      
-	            $.ajax({
-	              
-	                url: $config[PROP_WS_URL],
-	                dataType: DATATYPE_JSONP,
-	                
-	                data: {
+
+                var ajax_data;
+                if ($config[PROP_API_INPUT] == APIINPUT_BAN) {
+	                ajax_data = {
+	                    q: input.term,
+	                    limit: nbResults,
+	                    type: bantype
+	                };
+                } else {
+	                ajax_data = {
 	                    clientId: $config[PROP_PARAM_CLIENT_ID],
 	                    query: input.term,
 	                    nbResults: nbResults,
 	                    types: types
-	                },
+	                };
+                }
+	      
+	            $.ajax({
+	              
+	                url: $config[PROP_WS_URL],
+	                dataType: $config[PROP_DATATYPE] || DATATYPE_JSONP,
+	                
+	                data: ajax_data,
 	                
 	                success: function(data) {
 	                
@@ -113,11 +141,31 @@
                             // une propriété "label" pour affichage dans la liste déroulante
                             // de suggestions.
 	                    
-	                        forward($.map(data.result, function(item) {
+                            var listResults;
+                            if ($config[PROP_API_INPUT] == APIINPUT_BAN) {
+                                listResults = data.features;
+                            } else {
+                                listResults = data.result;
+                            }
+	                        forward($.map(listResults, function(item) {
 	                           
+                                var item2;
+                                if ($config[PROP_API_INPUT] == APIINPUT_BAN) {
+                                    item2 = {
+                                        "libelleTypo":item.properties.label,
+                                        "id":item.properties.id,
+                                        "x":item.geometry.coordinates[0],
+                                        "y":item.geometry.coordinates[1],
+                                        "type":item.properties.type
+                                    };
+                                } else {
+                                    item2 = item;
+                                }
+
+	                
 	                           return {	                           
-	                               label: item.libelleTypo,
-	                               poi: item
+	                               label: item2.libelleTypo,
+	                               poi: item2
 	                           };
 	                        }));
 	                    }
