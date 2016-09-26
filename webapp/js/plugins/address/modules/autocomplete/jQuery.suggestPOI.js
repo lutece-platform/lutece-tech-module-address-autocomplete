@@ -8,6 +8,7 @@
     
     var PROP_WS_URL = "suggestPOI.ws.url";
     var PROP_DATATYPE = "suggestPOI.ws.datatype";
+    var PROP_ON_SELECT_UPDATE_DOM = "suggestPOI.param.onSelectUpdateDom";
     var PROP_API_INPUT = "suggestPOI.ws.apiinput";
     var PROP_UI_DELAY = "suggestPOI.ui.delay";
     var PROP_PARAM_QUERY_MIN_LENGTH = "suggestPOI.param.query.minLength";
@@ -189,6 +190,12 @@
 	            if (typeof(ui.item) !== "undefined") {
                     $(this).trigger($.Event(EVT_SELECT, ui.item));
 	            }
+	            if ($config[PROP_ON_SELECT_UPDATE_DOM] === "false") {
+	               //Both lines should be enough on their own to prevent jquery-ui
+	               //from updating the <input>, but keep them both just in case
+	               event.preventDefault();
+	               return false;
+	           }
 	        },
 	    
 	        open: function() {

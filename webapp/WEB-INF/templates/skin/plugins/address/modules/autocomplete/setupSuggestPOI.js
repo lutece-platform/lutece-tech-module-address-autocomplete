@@ -11,6 +11,7 @@
     var PROP_API_INPUT = "suggestPOI.ws.apiinput";
     var PROP_UI_DELAY = "suggestPOI.ui.delay";
     var PROP_PARAM_QUERY_MIN_LENGTH = "suggestPOI.param.query.minLength";
+    var PROP_ON_SELECT_UPDATE_DOM = "suggestPOI.param.onSelectUpdateDom";
     var PROP_PARAM_TYPES_DEFAULT = "suggestPOI.param.types.default";
     var PROP_PARAM_BANTYPE_DEFAULT = "suggestPOI.param.bantype.default";
     var PROP_PARAM_NB_RESULTS_DEFAULT = "suggestPOI.param.nbResults.default"
@@ -21,6 +22,7 @@
     <#if ws_apiinput??>$config[PROP_API_INPUT] = "${ws_apiinput}";</#if>
     $config[PROP_UI_DELAY] = parseInt("${ui_delay}", 10);
     $config[PROP_PARAM_QUERY_MIN_LENGTH] = parseInt("${param_query_minLength}", 10);
+    <#if param_onSelectUpdateDom??>$config[PROP_ON_SELECT_UPDATE_DOM] = "${param_onSelectUpdateDom}";</#if>
     $config[PROP_PARAM_TYPES_DEFAULT] = "${param_types_default}";
     <#if param_bantype_default??>$config[PROP_PARAM_BANTYPE_DEFAULT] = "${param_bantype_default}";</#if>
     $config[PROP_PARAM_NB_RESULTS_DEFAULT] = parseInt("${param_nbResults_default}", 10);

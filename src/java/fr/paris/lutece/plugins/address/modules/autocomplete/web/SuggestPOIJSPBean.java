@@ -64,6 +64,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String SUBPROP_WS_APIINPUT = "ws.apiinput";
     private static final String SUBPROP_UI_DELAY = "ui.delay";
     private static final String SUBPROP_PARAM_QUERY_MIN_LENGTH = "param.query.minLength";
+    private static final String SUBPROP_PARAM_ONSELECTUPDATEDOM = "param.onSelectUpdateDom";
     private static final String SUBPROP_PARAM_TYPES_DEFAULT = "param.types.default";
     private static final String SUBPROP_PARAM_BANTYPE_DEFAULT = "param.bantype.default";
     private static final String SUBPROP_PARAM_NB_RESULTS_DEFAULT = "param.nbResults.default";
@@ -74,6 +75,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String PROP_WS_APIINPUT = _PROP_PREFIX + SUBPROP_WS_APIINPUT;
     private static final String PROP_UI_DELAY = _PROP_PREFIX + SUBPROP_UI_DELAY;
     private static final String PROP_PARAM_QUERY_MIN_LENGTH = _PROP_PREFIX + SUBPROP_PARAM_QUERY_MIN_LENGTH;
+    private static final String PROP_PARAM_ONSELECTUPDATEDOM = _PROP_PREFIX + SUBPROP_PARAM_ONSELECTUPDATEDOM;
     private static final String PROP_PARAM_TYPES_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_TYPES_DEFAULT;
     private static final String PROP_PARAM_BANTYPE_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANTYPE_DEFAULT;
     private static final String PROP_PARAM_NB_RESULTS_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_NB_RESULTS_DEFAULT;
@@ -88,6 +90,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String KEY_WS_APIINPUT = SUBPROP_WS_APIINPUT.replace( '.', '_' );
     private static final String KEY_UI_DELAY = SUBPROP_UI_DELAY.replace( '.', '_' );
     private static final String KEY_PARAM_QUERY_MIN_LENGTH = SUBPROP_PARAM_QUERY_MIN_LENGTH.replace( '.', '_' );
+    private static final String KEY_PARAM_ONSELECTUPDATEDOM = SUBPROP_PARAM_ONSELECTUPDATEDOM.replace( '.', '_' );
     private static final String KEY_PARAM_TYPES_DEFAULT = SUBPROP_PARAM_TYPES_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_BANTYPE_DEFAULT = SUBPROP_PARAM_BANTYPE_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_NB_RESULTS_DEFAULT = SUBPROP_PARAM_NB_RESULTS_DEFAULT.replace( '.', '_' );
@@ -117,6 +120,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
         model.put( KEY_WS_APIINPUT, AppPropertiesService.getProperty( PROP_WS_APIINPUT ) );
         model.put( KEY_UI_DELAY, AppPropertiesService.getProperty( PROP_UI_DELAY ) );
         model.put( KEY_PARAM_QUERY_MIN_LENGTH, AppPropertiesService.getProperty( PROP_PARAM_QUERY_MIN_LENGTH ) );
+        model.put( KEY_PARAM_ONSELECTUPDATEDOM, AppPropertiesService.getProperty( PROP_PARAM_ONSELECTUPDATEDOM ) );
         model.put( KEY_PARAM_TYPES_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_TYPES_DEFAULT ) );
         model.put( KEY_PARAM_BANTYPE_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANTYPE_DEFAULT ) );
         model.put( KEY_PARAM_NB_RESULTS_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_NB_RESULTS_DEFAULT ) );
