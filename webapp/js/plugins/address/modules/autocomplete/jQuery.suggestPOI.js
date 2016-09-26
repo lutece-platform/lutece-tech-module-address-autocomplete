@@ -156,6 +156,7 @@
                                         "id":item.properties.id,
                                         "x":item.geometry.coordinates[0],
                                         "y":item.geometry.coordinates[1],
+                                        "sourcePOI": item,
                                         "type":item.properties.type
                                     };
                                 } else {
