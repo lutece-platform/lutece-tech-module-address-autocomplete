@@ -14,6 +14,10 @@
     var PROP_PARAM_QUERY_MIN_LENGTH = "suggestPOI.param.query.minLength";
     var PROP_PARAM_TYPES_DEFAULT = "suggestPOI.param.types.default";
     var PROP_PARAM_BANTYPE_DEFAULT = "suggestPOI.param.bantype.default";
+    var PROP_PARAM_BANLAT_DEFAULT = "suggestPOI.param.banlat.default";
+    var PROP_PARAM_BANLON_DEFAULT = "suggestPOI.param.banlon.default";
+    var PROP_PARAM_BANPOSTCODE_DEFAULT = "suggestPOI.param.banpostcode.default";
+    var PROP_PARAM_BANCITYCODE_DEFAULT = "suggestPOI.param.bancitycode.default";
     var PROP_PARAM_NB_RESULTS_DEFAULT = "suggestPOI.param.nbResults.default";
     var PROP_PARAM_CLIENT_ID = "suggestPOI.param.clientId";
     
@@ -52,6 +56,10 @@
             var defaultOptions = {
                 types: $config[PROP_PARAM_TYPES_DEFAULT],
                 bantype: $config[PROP_PARAM_BANTYPE_DEFAULT],
+                banlat: $config[PROP_PARAM_BANLAT_DEFAULT],
+                banlon: $config[PROP_PARAM_BANLON_DEFAULT],
+                banpostcode: $config[PROP_PARAM_BANPOSTCODE_DEFAULT],
+                bancitycode: $config[PROP_PARAM_BANCITYCODE_DEFAULT],
                 nbResults: $config[PROP_PARAM_NB_RESULTS_DEFAULT]
             };
             
@@ -87,6 +95,10 @@
         var nbResults = options.nbResults;
         var types = options.types;
         var bantype = options.bantype;
+        var banlat = options.banlat;
+        var banlon = options.banlon;
+        var banpostcode = options.banpostcode;
+        var bancitycode = options.bancitycode;
         
         if ($.isArray(types)) {
             types = types.join(SEP_TYPES);
@@ -108,6 +120,10 @@
 	                ajax_data = {
 	                    q: input.term,
 	                    limit: nbResults,
+	                    lat: banlat,
+	                    lon: banlon,
+	                    postcode: banpostcode,
+	                    citycode: bancitycode,
 	                    type: bantype
 	                };
                 } else {

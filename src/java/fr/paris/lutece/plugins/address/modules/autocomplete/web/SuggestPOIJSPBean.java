@@ -67,6 +67,10 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String SUBPROP_PARAM_ONSELECTUPDATEDOM = "param.onSelectUpdateDom";
     private static final String SUBPROP_PARAM_TYPES_DEFAULT = "param.types.default";
     private static final String SUBPROP_PARAM_BANTYPE_DEFAULT = "param.bantype.default";
+    private static final String SUBPROP_PARAM_BANLAT_DEFAULT = "param.banlat.default";
+    private static final String SUBPROP_PARAM_BANLON_DEFAULT = "param.banlon.default";
+    private static final String SUBPROP_PARAM_BANPOSTCODE_DEFAULT = "param.banpostcode.default";
+    private static final String SUBPROP_PARAM_BANCITYCODE_DEFAULT = "param.bancitycode.default";
     private static final String SUBPROP_PARAM_NB_RESULTS_DEFAULT = "param.nbResults.default";
     private static final String SUBPROP_PARAM_CLIENT_ID = "param.clientId";
     
@@ -78,6 +82,10 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String PROP_PARAM_ONSELECTUPDATEDOM = _PROP_PREFIX + SUBPROP_PARAM_ONSELECTUPDATEDOM;
     private static final String PROP_PARAM_TYPES_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_TYPES_DEFAULT;
     private static final String PROP_PARAM_BANTYPE_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANTYPE_DEFAULT;
+    private static final String PROP_PARAM_BANLAT_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANLAT_DEFAULT;
+    private static final String PROP_PARAM_BANLON_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANLON_DEFAULT;
+    private static final String PROP_PARAM_BANPOSTCODE_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANPOSTCODE_DEFAULT;
+    private static final String PROP_PARAM_BANCITYCODE_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANCITYCODE_DEFAULT;
     private static final String PROP_PARAM_NB_RESULTS_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_NB_RESULTS_DEFAULT;
     private static final String PROP_PARAM_CLIENT_ID = _PROP_PREFIX + SUBPROP_PARAM_CLIENT_ID;
     
@@ -93,6 +101,10 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String KEY_PARAM_ONSELECTUPDATEDOM = SUBPROP_PARAM_ONSELECTUPDATEDOM.replace( '.', '_' );
     private static final String KEY_PARAM_TYPES_DEFAULT = SUBPROP_PARAM_TYPES_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_BANTYPE_DEFAULT = SUBPROP_PARAM_BANTYPE_DEFAULT.replace( '.', '_' );
+    private static final String KEY_PARAM_BANLAT_DEFAULT = SUBPROP_PARAM_BANLAT_DEFAULT.replace( '.', '_' );
+    private static final String KEY_PARAM_BANLON_DEFAULT = SUBPROP_PARAM_BANLON_DEFAULT.replace( '.', '_' );
+    private static final String KEY_PARAM_BANPOSTCODE_DEFAULT = SUBPROP_PARAM_BANPOSTCODE_DEFAULT.replace( '.', '_' );
+    private static final String KEY_PARAM_BANCITYCODE_DEFAULT = SUBPROP_PARAM_BANCITYCODE_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_NB_RESULTS_DEFAULT = SUBPROP_PARAM_NB_RESULTS_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_CLIENT_ID = SUBPROP_PARAM_CLIENT_ID.replace( '.', '_' );
     
@@ -123,6 +135,10 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
         model.put( KEY_PARAM_ONSELECTUPDATEDOM, AppPropertiesService.getProperty( PROP_PARAM_ONSELECTUPDATEDOM ) );
         model.put( KEY_PARAM_TYPES_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_TYPES_DEFAULT ) );
         model.put( KEY_PARAM_BANTYPE_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANTYPE_DEFAULT ) );
+        model.put( KEY_PARAM_BANLAT_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANLAT_DEFAULT ) );
+        model.put( KEY_PARAM_BANLON_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANLON_DEFAULT ) );
+        model.put( KEY_PARAM_BANPOSTCODE_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANPOSTCODE_DEFAULT ) );
+        model.put( KEY_PARAM_BANCITYCODE_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANCITYCODE_DEFAULT ) );
         model.put( KEY_PARAM_NB_RESULTS_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_NB_RESULTS_DEFAULT ) );
         model.put( KEY_PARAM_CLIENT_ID, AppPropertiesService.getProperty( PROP_PARAM_CLIENT_ID ) );
         
