@@ -20,6 +20,7 @@
     var PROP_PARAM_BANCITYCODE_DEFAULT = "suggestPOI.param.bancitycode.default";
     var PROP_PARAM_NB_RESULTS_DEFAULT = "suggestPOI.param.nbResults.default"
     var PROP_PARAM_CLIENT_ID = "suggestPOI.param.clientId";
+    var PROP_PARAM_STOREADRFILTER_DEFAULT = "suggestPOI.param.storeadrfilter.default";
     
     $config[PROP_WS_URL] = "${ws_url}";
     <#if ws_datatype??>$config[PROP_DATATYPE] = "${ws_datatype}";</#if>
@@ -35,5 +36,6 @@
     <#if param_bancitycode_default??>$config[PROP_PARAM_BANCITYCODE_DEFAULT] = "${param_bancitycode_default}";</#if>
     $config[PROP_PARAM_NB_RESULTS_DEFAULT] = parseInt("${param_nbResults_default}", 10);
     $config[PROP_PARAM_CLIENT_ID] = "${param_clientId}";
+    <#if param_storeadrfilter_default??>$config[PROP_PARAM_STOREADRFILTER_DEFAULT] = "${param_storeadrfilter_default}";</#if>
      
 })(jQuery);

@@ -20,6 +20,7 @@
     var PROP_PARAM_BANCITYCODE_DEFAULT = "suggestPOI.param.bancitycode.default";
     var PROP_PARAM_NB_RESULTS_DEFAULT = "suggestPOI.param.nbResults.default";
     var PROP_PARAM_CLIENT_ID = "suggestPOI.param.clientId";
+    var PROP_PARAM_STOREADRFILTER_DEFAULT = "suggestPOI.param.storeadrfilter.default";
     
     var EVT_NS_SPOI = ".suggestPOI";
     var EVT_SELECT = "select"
@@ -30,6 +31,9 @@
 
     var APIINPUT_SUGGESTPOI = "SUGGESTPOI";
     var APIINPUT_BAN = "BAN";
+    var APIINPUT_STOREADR = "STOREADR";
+
+    var STOREADR_DEFAULT_FILTER = "France";
     
     var SEP_TYPES = ",";
 
@@ -60,6 +64,7 @@
                 banlon: $config[PROP_PARAM_BANLON_DEFAULT],
                 banpostcode: $config[PROP_PARAM_BANPOSTCODE_DEFAULT],
                 bancitycode: $config[PROP_PARAM_BANCITYCODE_DEFAULT],
+                storeadrfilter: $config[PROP_PARAM_STOREADRFILTER_DEFAULT],
                 nbResults: $config[PROP_PARAM_NB_RESULTS_DEFAULT]
             };
             
@@ -99,6 +104,8 @@
         var banlon = options.banlon;
         var banpostcode = options.banpostcode;
         var bancitycode = options.bancitycode;
+
+        var storeadrfilter = options.storeadrfilter || STOREADR_DEFAULT_FILTER;
         
         if ($.isArray(types)) {
             types = types.join(SEP_TYPES);
@@ -116,7 +123,9 @@
 	        	var jThis = $(this);
 
                 var ajax_data;
+                var ajax_url;
                 if ($config[PROP_API_INPUT] == APIINPUT_BAN) {
+                    ajax_url = $config[PROP_WS_URL]
 	                ajax_data = {
 	                    q: input.term,
 	                    limit: nbResults,
@@ -126,7 +135,11 @@
 	                    citycode: bancitycode,
 	                    type: bantype
 	                };
+                } else if ($config[PROP_API_INPUT] == APIINPUT_STOREADR) {
+                    ajax_url = $config[PROP_WS_URL] + "/" + $config[PROP_PARAM_CLIENT_ID] + "/" + storeadrfilter + "/adrauto/" + input.term;
+                    ajax_data = null;
                 } else {
+                    ajax_url = $config[PROP_WS_URL]
 	                ajax_data = {
 	                    clientId: $config[PROP_PARAM_CLIENT_ID],
 	                    query: input.term,
@@ -137,7 +150,7 @@
 	      
 	            $.ajax({
 	              
-	                url: $config[PROP_WS_URL],
+	                url: ajax_url,
 	                dataType: $config[PROP_DATATYPE] || DATATYPE_JSONP,
 	                
 	                data: ajax_data,
@@ -161,6 +174,8 @@
                             var listResults;
                             if ($config[PROP_API_INPUT] == APIINPUT_BAN) {
                                 listResults = data.features;
+                            } else if ($config[PROP_API_INPUT] == APIINPUT_STOREADR) {
+                                listResults = data.result;
                             } else {
                                 listResults = data.result;
                             }
@@ -175,6 +190,11 @@
                                         "y":item.geometry.coordinates[1],
                                         "sourcePOI": item,
                                         "type":item.properties.type
+                                    };
+                                } else if ($config[PROP_API_INPUT] == APIINPUT_STOREADR) {
+                                    item2 = {
+                                        "libelleTypo":item.Adressetypo,
+                                        "id":item.Idadrposte
                                     };
                                 } else {
                                     item2 = item;
@@ -204,7 +224,20 @@
 	        select: function(event, ui) {
 	        
 	            if (typeof(ui.item) !== "undefined") {
-                    $(this).trigger($.Event(EVT_SELECT, ui.item));
+                    if ($config[PROP_API_INPUT] == APIINPUT_STOREADR) {
+                      var _this = this;
+                      var ajax_url = $config[PROP_WS_URL] + "/" + $config[PROP_PARAM_CLIENT_ID] + "/idadrposte/" + ui.item.poi.id;
+                      $.get( ajax_url, undefined, function(data) {
+                          var item = {
+                                      label: ui.item.label,
+                                      value: ui.item.value,
+                                      poi: data.result
+                          };
+                          $(_this).trigger($.Event(EVT_SELECT, item));
+                      }, $config[PROP_DATATYPE] || DATATYPE_JSONP);
+                    } else {
+                        $(this).trigger($.Event(EVT_SELECT, ui.item));
+                    }
 	            }
 	            if ($config[PROP_ON_SELECT_UPDATE_DOM] === "false") {
 	               //Both lines should be enough on their own to prevent jquery-ui

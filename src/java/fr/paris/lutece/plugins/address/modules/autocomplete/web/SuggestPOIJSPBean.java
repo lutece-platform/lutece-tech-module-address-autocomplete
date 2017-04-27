@@ -73,6 +73,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String SUBPROP_PARAM_BANCITYCODE_DEFAULT = "param.bancitycode.default";
     private static final String SUBPROP_PARAM_NB_RESULTS_DEFAULT = "param.nbResults.default";
     private static final String SUBPROP_PARAM_CLIENT_ID = "param.clientId";
+    private static final String SUBPROP_PARAM_STOREADRFILTER_DEFAULT = "param.storeadrfilter.default";
     
     private static final String PROP_WS_URL = _PROP_PREFIX + SUBPROP_WS_URL;
     private static final String PROP_WS_DATATYPE = _PROP_PREFIX + SUBPROP_WS_DATATYPE;
@@ -88,6 +89,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String PROP_PARAM_BANCITYCODE_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANCITYCODE_DEFAULT;
     private static final String PROP_PARAM_NB_RESULTS_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_NB_RESULTS_DEFAULT;
     private static final String PROP_PARAM_CLIENT_ID = _PROP_PREFIX + SUBPROP_PARAM_CLIENT_ID;
+    private static final String PROP_PARAM_STOREADRFILTER_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_STOREADRFILTER_DEFAULT;
     
     // Template model key names
     
@@ -107,6 +109,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String KEY_PARAM_BANCITYCODE_DEFAULT = SUBPROP_PARAM_BANCITYCODE_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_NB_RESULTS_DEFAULT = SUBPROP_PARAM_NB_RESULTS_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_CLIENT_ID = SUBPROP_PARAM_CLIENT_ID.replace( '.', '_' );
+    private static final String KEY_PARAM_STOREADRFILTER_DEFAULT = SUBPROP_PARAM_STOREADRFILTER_DEFAULT.replace( '.', '_' );
     
     // Template sub-paths
     // In this JSPBean, the templates are JS files
@@ -141,6 +144,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
         model.put( KEY_PARAM_BANCITYCODE_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANCITYCODE_DEFAULT ) );
         model.put( KEY_PARAM_NB_RESULTS_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_NB_RESULTS_DEFAULT ) );
         model.put( KEY_PARAM_CLIENT_ID, AppPropertiesService.getProperty( PROP_PARAM_CLIENT_ID ) );
+        model.put( KEY_PARAM_STOREADRFILTER_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_STOREADRFILTER_DEFAULT ) );
         
         return model;
     }
