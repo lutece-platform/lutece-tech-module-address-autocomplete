@@ -1,17 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
     <parent>
-        <artifactId>lutece-plugins-pom</artifactId>
-        <groupId>fr.paris.lutece.plugins</groupId>
-        <version>3.7</version>
+        <artifactId>lutece-global-pom</artifactId>
+        <groupId>fr.paris.lutece.tools</groupId>
+        <version>3.0.12</version>
     </parent>
-    
     <modelVersion>4.0.0</modelVersion>
+    <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-address-autocomplete</artifactId>
     <packaging>lutece-plugin</packaging>
     <version>1.0.6-SNAPSHOT</version>
     <name>Lutece Address module for auto-completion</name>
-    
     <repositories>
         <repository>
             <id>lutece</id>
@@ -20,26 +18,22 @@
             <layout>default</layout>
         </repository>
     </repositories>
-    
     <dependencies>
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>plugin-address</artifactId>
             <version>[1.0.5,2.0.0-SNAPSHOT)</version>
             <type>lutece-plugin</type>
-        </dependency>   
+        </dependency>
     </dependencies>
-    
     <properties>
         <componentName>address-autocomplete</componentName>
         <jiraProjectName>ADDRESSAUTOCOMPLETE</jiraProjectName>
         <jiraComponentId>10661</jiraComponentId>
     </properties>
-    
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/module-address-autocomplete</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/module-address-autocomplete</developerConnection>
-        <url>http://dev.lutece.paris.fr/wsvn/lutece/portal/trunk/plugins/technical/module-address-autocomplete/</url>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</developerConnection>
+        <url>https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</url>
     </scm>
-    
 </project>
