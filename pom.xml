@@ -8,7 +8,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-address-autocomplete</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.6</version>
     <name>Lutece Address module for auto-completion</name>
     <repositories>
         <repository>
@@ -35,5 +35,6 @@
         <connection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</url>
-    </scm>
+      <tag>module-address-autocomplete-1.0.6</tag>
+  </scm>
 </project>
