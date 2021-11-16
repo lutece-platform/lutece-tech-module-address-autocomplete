@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2021, City of Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,19 +46,19 @@ import fr.paris.lutece.portal.web.admin.PluginAdminPageJspBean;
 
 public class SuggestPOIJSPBean extends PluginAdminPageJspBean
 {
-    /* + + + + + + + + + + + + + + + + + + + + + + + + + + +
-    + Constants
-    + + + + + + + + + + + + + + + + + + + + + + + + + + + */
-    
+    /*
+     * + + + + + + + + + + + + + + + + + + + + + + + + + + + + Constants + + + + + + + + + + + + + + + + + + + + + + + + + + +
+     */
+
     private static final long serialVersionUID = 4190973800934420917L;
-    
-    @SuppressWarnings("unused")
-    private static final Logger logger = Logger.getLogger( SuggestPOIJSPBean.class.getName(  ) );
-    
+
+    @SuppressWarnings( "unused" )
+    private static final Logger logger = Logger.getLogger( SuggestPOIJSPBean.class.getName( ) );
+
     // Configuration property names
-    
+
     private static final String _PROP_PREFIX = "address-autocomplete.suggestPOI.";
-    
+
     private static final String SUBPROP_WS_URL = "ws.url";
     private static final String SUBPROP_WS_DATATYPE = "ws.datatype";
     private static final String SUBPROP_WS_APIINPUT = "ws.apiinput";
@@ -74,7 +74,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String SUBPROP_PARAM_NB_RESULTS_DEFAULT = "param.nbResults.default";
     private static final String SUBPROP_PARAM_CLIENT_ID = "param.clientId";
     private static final String SUBPROP_PARAM_STOREADRFILTER_DEFAULT = "param.storeadrfilter.default";
-    
+
     private static final String PROP_WS_URL = _PROP_PREFIX + SUBPROP_WS_URL;
     private static final String PROP_WS_DATATYPE = _PROP_PREFIX + SUBPROP_WS_DATATYPE;
     private static final String PROP_WS_APIINPUT = _PROP_PREFIX + SUBPROP_WS_APIINPUT;
@@ -90,11 +90,11 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String PROP_PARAM_NB_RESULTS_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_NB_RESULTS_DEFAULT;
     private static final String PROP_PARAM_CLIENT_ID = _PROP_PREFIX + SUBPROP_PARAM_CLIENT_ID;
     private static final String PROP_PARAM_STOREADRFILTER_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_STOREADRFILTER_DEFAULT;
-    
+
     // Template model key names
-    
+
     private static final String KEY_BASE_URL = "base_url";
-    
+
     private static final String KEY_WS_URL = SUBPROP_WS_URL.replace( '.', '_' );
     private static final String KEY_WS_DATATYPE = SUBPROP_WS_DATATYPE.replace( '.', '_' );
     private static final String KEY_WS_APIINPUT = SUBPROP_WS_APIINPUT.replace( '.', '_' );
@@ -110,26 +110,27 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String KEY_PARAM_NB_RESULTS_DEFAULT = SUBPROP_PARAM_NB_RESULTS_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_CLIENT_ID = SUBPROP_PARAM_CLIENT_ID.replace( '.', '_' );
     private static final String KEY_PARAM_STOREADRFILTER_DEFAULT = SUBPROP_PARAM_STOREADRFILTER_DEFAULT.replace( '.', '_' );
-    
+
     // Template sub-paths
     // In this JSPBean, the templates are JS files
-    
+
     private static final String TPL_PORTAL = "skin/plugins/address/modules/autocomplete/setupSuggestPOI.js";
     private static final String TPL_ADMIN = "admin/plugins/address/modules/autocomplete/setupSuggestPOI.js";
-    
-    /* + + + + + + + + + + + + + + + + + + + + + + + + + + +
-    + Private methods
-    + + + + + + + + + + + + + + + + + + + + + + + + + + + */
-    
-    /**
-     * @return  Common values in a map for SuggestPOI JavaScript template. 
+
+    /*
+     * + + + + + + + + + + + + + + + + + + + + + + + + + + + + Private methods + + + + + + + + + + + + + + + + + + + + + + + + + + +
      */
-    private Map<String, String> getInitSuggestPOIModel( HttpServletRequest request ) {
-        
-        Map<String, String> model = new HashMap<String, String>();
-        
+
+    /**
+     * @return Common values in a map for SuggestPOI JavaScript template.
+     */
+    private Map<String, String> getInitSuggestPOIModel( HttpServletRequest request )
+    {
+
+        Map<String, String> model = new HashMap<String, String>( );
+
         model.put( KEY_BASE_URL, AppPathService.getBaseUrl( request ) );
-        
+
         model.put( KEY_WS_URL, AppPropertiesService.getProperty( PROP_WS_URL ) );
         model.put( KEY_WS_DATATYPE, AppPropertiesService.getProperty( PROP_WS_DATATYPE ) );
         model.put( KEY_WS_APIINPUT, AppPropertiesService.getProperty( PROP_WS_APIINPUT ) );
@@ -145,35 +146,39 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
         model.put( KEY_PARAM_NB_RESULTS_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_NB_RESULTS_DEFAULT ) );
         model.put( KEY_PARAM_CLIENT_ID, AppPropertiesService.getProperty( PROP_PARAM_CLIENT_ID ) );
         model.put( KEY_PARAM_STOREADRFILTER_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_STOREADRFILTER_DEFAULT ) );
-        
+
         return model;
     }
-    
-    /* + + + + + + + + + + + + + + + + + + + + + + + + + + +
-    + Public methods
-    + + + + + + + + + + + + + + + + + + + + + + + + + + + */
-    
-    /**
-     * Provides JavaScript source code for setting up SuggestPOI configuration  in the front-office.
-     * 
-     * @param request   The request in progress.
-     * @return  JavaScript source
+
+    /*
+     * + + + + + + + + + + + + + + + + + + + + + + + + + + + + Public methods + + + + + + + + + + + + + + + + + + + + + + + + + + +
      */
-    public String getSetupSuggestPOIJavaScriptPortal( HttpServletRequest request ) {
-        
+
+    /**
+     * Provides JavaScript source code for setting up SuggestPOI configuration in the front-office.
+     * 
+     * @param request
+     *            The request in progress.
+     * @return JavaScript source
+     */
+    public String getSetupSuggestPOIJavaScriptPortal( HttpServletRequest request )
+    {
+
         Map<String, String> model = this.getInitSuggestPOIModel( request );
-        return AppTemplateService.getTemplate( TPL_PORTAL, this.getLocale(  ), model ).getHtml( );
+        return AppTemplateService.getTemplate( TPL_PORTAL, this.getLocale( ), model ).getHtml( );
     }
-    
+
     /**
      * Provides JavaScript source code for setting up SuggestPOI configuration in the back-office.
      * 
-     * @param request   The request in progress.
-     * @return  JavaScript source
+     * @param request
+     *            The request in progress.
+     * @return JavaScript source
      */
-    public String getSetupSuggestPOIJavaScriptAdmin( HttpServletRequest request ) {
-        
+    public String getSetupSuggestPOIJavaScriptAdmin( HttpServletRequest request )
+    {
+
         Map<String, String> model = this.getInitSuggestPOIModel( request );
-        return AppTemplateService.getTemplate( TPL_ADMIN, this.getLocale(  ), model ).getHtml( );
+        return AppTemplateService.getTemplate( TPL_ADMIN, this.getLocale( ), model ).getHtml( );
     }
 }
