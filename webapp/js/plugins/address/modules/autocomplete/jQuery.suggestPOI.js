@@ -112,10 +112,12 @@
         }
             
 	    jElem.autocomplete({
-	    
+           
             minLength: $config[PROP_PARAM_QUERY_MIN_LENGTH],
             delay: $config[PROP_UI_DELAY],
-	       
+	        position:{
+                collision:"fit flip"  
+             },
             // Définition de la source de données.
             // Une méthode convient pour une source distante.
 	        source: function(input, forward) {
