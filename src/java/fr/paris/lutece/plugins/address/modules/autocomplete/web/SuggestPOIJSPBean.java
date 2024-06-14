@@ -66,6 +66,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String SUBPROP_PARAM_QUERY_MIN_LENGTH = "param.query.minLength";
     private static final String SUBPROP_PARAM_ONSELECTUPDATEDOM = "param.onSelectUpdateDom";
     private static final String SUBPROP_PARAM_TYPES_DEFAULT = "param.types.default";
+    private static final String SUBPROP_PARAM_SRID_DEFAULT = "param.srid.default";
     private static final String SUBPROP_PARAM_BANTYPE_DEFAULT = "param.bantype.default";
     private static final String SUBPROP_PARAM_BANLAT_DEFAULT = "param.banlat.default";
     private static final String SUBPROP_PARAM_BANLON_DEFAULT = "param.banlon.default";
@@ -82,6 +83,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String PROP_PARAM_QUERY_MIN_LENGTH = _PROP_PREFIX + SUBPROP_PARAM_QUERY_MIN_LENGTH;
     private static final String PROP_PARAM_ONSELECTUPDATEDOM = _PROP_PREFIX + SUBPROP_PARAM_ONSELECTUPDATEDOM;
     private static final String PROP_PARAM_TYPES_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_TYPES_DEFAULT;
+    private static final String PROP_PARAM_SRID_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_SRID_DEFAULT;
     private static final String PROP_PARAM_BANTYPE_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANTYPE_DEFAULT;
     private static final String PROP_PARAM_BANLAT_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANLAT_DEFAULT;
     private static final String PROP_PARAM_BANLON_DEFAULT = _PROP_PREFIX + SUBPROP_PARAM_BANLON_DEFAULT;
@@ -102,6 +104,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
     private static final String KEY_PARAM_QUERY_MIN_LENGTH = SUBPROP_PARAM_QUERY_MIN_LENGTH.replace( '.', '_' );
     private static final String KEY_PARAM_ONSELECTUPDATEDOM = SUBPROP_PARAM_ONSELECTUPDATEDOM.replace( '.', '_' );
     private static final String KEY_PARAM_TYPES_DEFAULT = SUBPROP_PARAM_TYPES_DEFAULT.replace( '.', '_' );
+    private static final String KEY_PARAM_SRID_DEFAULT = SUBPROP_PARAM_SRID_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_BANTYPE_DEFAULT = SUBPROP_PARAM_BANTYPE_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_BANLAT_DEFAULT = SUBPROP_PARAM_BANLAT_DEFAULT.replace( '.', '_' );
     private static final String KEY_PARAM_BANLON_DEFAULT = SUBPROP_PARAM_BANLON_DEFAULT.replace( '.', '_' );
@@ -138,6 +141,7 @@ public class SuggestPOIJSPBean extends PluginAdminPageJspBean
         model.put( KEY_PARAM_QUERY_MIN_LENGTH, AppPropertiesService.getProperty( PROP_PARAM_QUERY_MIN_LENGTH ) );
         model.put( KEY_PARAM_ONSELECTUPDATEDOM, AppPropertiesService.getProperty( PROP_PARAM_ONSELECTUPDATEDOM ) );
         model.put( KEY_PARAM_TYPES_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_TYPES_DEFAULT ) );
+        model.put( KEY_PARAM_SRID_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_SRID_DEFAULT ) );
         model.put( KEY_PARAM_BANTYPE_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANTYPE_DEFAULT ) );
         model.put( KEY_PARAM_BANLAT_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANLAT_DEFAULT ) );
         model.put( KEY_PARAM_BANLON_DEFAULT, AppPropertiesService.getProperty( PROP_PARAM_BANLON_DEFAULT ) );

@@ -10,6 +10,7 @@
     var PROP_UI_DELAY = "suggestPOI.ui.delay";
     var PROP_PARAM_QUERY_MIN_LENGTH = "suggestPOI.param.query.minLength";
     var PROP_PARAM_TYPES_DEFAULT = "suggestPOI.param.types.default";
+    var PROP_PARAM_SRID_DEFAULT = "suggestPOI.param.srid.default";
     var PROP_PARAM_BANTYPE_DEFAULT = "suggestPOI.param.bantype.default";
     var PROP_PARAM_BANLAT_DEFAULT = "suggestPOI.param.banlat.default";
     var PROP_PARAM_BANLON_DEFAULT = "suggestPOI.param.banlon.default";
@@ -45,6 +46,7 @@
         	}
             var defaultOptions = {
                 types: $config[PROP_PARAM_TYPES_DEFAULT],
+                srid: $config[PROP_PARAM_SRID_DEFAULT],
                 bantype: $config[PROP_PARAM_BANTYPE_DEFAULT],
                 banlat: $config[PROP_PARAM_BANLAT_DEFAULT],
                 banlon: $config[PROP_PARAM_BANLON_DEFAULT],
@@ -113,8 +115,10 @@
 	                    type: bantype
 	                };
                 } else if ($config[PROP_API_INPUT] == APIINPUT_STOREADR) {
-                    ajax_url = $config[PROP_WS_URL] + "/" + $config[PROP_PARAM_CLIENT_ID] + "/" + storeadrfilter + "/adrauto/" + input.term;
-                    ajax_data = null;
+                    ajax_url = $config[PROP_WS_URL] + "/" + $config[PROP_PARAM_CLIENT_ID] + "/poiauto/" + input.term;
+                    ajax_data = {
+                        Parms: "{\"Entites\":\"" + $config[PROP_PARAM_TYPES_DEFAULT] + "\",\"toSrid\":\"" + $config[PROP_PARAM_SRID_DEFAULT] + "\"}"
+                    };
                 } else {
                     ajax_url = $config[PROP_WS_URL]
 	                ajax_data = {
@@ -151,17 +155,20 @@
                                 var item2;
                                 if ($config[PROP_API_INPUT] == APIINPUT_BAN) {
                                     item2 = {
-                                        "libelleTypo":item.properties.label,
+                                        "libelleTypo": item.properties.label,
                                         "id":item.properties.id,
                                         "x":item.geometry.coordinates[0],
                                         "y":item.geometry.coordinates[1],
                                         "sourcePOI": item,
-                                        "type":item.properties.type
+                                        "type":item.properties.type, 
                                     };
                                 } else if ($config[PROP_API_INPUT] == APIINPUT_STOREADR) {
                                     item2 = {
-                                        "libelleTypo":item.Adressetypo,
-                                        "id":item.Idadrposte
+                                        "libelleTypo": item.Libelletypo,
+                                        "x": item.X,
+                                        "y": item.Y,
+                                        "sourcePOI": item,
+                                        "id":item.Objectid,
                                     };
                                 } else {
                                     item2 = item;
@@ -186,13 +193,15 @@
 	            if (typeof(ui.item) !== "undefined") {
                     if ($config[PROP_API_INPUT] == APIINPUT_STOREADR) {
                       var _this = this;
-                      var ajax_url = $config[PROP_WS_URL] + "/" + $config[PROP_PARAM_CLIENT_ID] + "/idadrposte/" + ui.item.poi.id;
+                      var ajax_url = $config[PROP_WS_URL] + "/" + $config[PROP_PARAM_CLIENT_ID] + "/objectid/(" + ui.item.poi.id + ",4326)";
                       $.get( ajax_url, undefined, function(data) {
                           var item = {
-                                      label: ui.item.label,
-                                      value: ui.item.value,
-                                      poi: data.result
-                          };
+                                      "label": ui.item.label,
+                                      "value": ui.item.value,
+                                      "poi": ui.item.poi,                         
+                                    };
+                            item.poi.x = data.result.Features[0].geometry.coordinates[0];
+                            item.poi.y =  data.result.Features[0].geometry.coordinates[1];
                           $(_this).trigger($.Event(EVT_SELECT, item));
                       }, $config[PROP_DATATYPE] || DATATYPE_JSONP);
                     } else {
