@@ -2,39 +2,37 @@
     <parent>
         <artifactId>lutece-global-pom</artifactId>
         <groupId>fr.paris.lutece.tools</groupId>
-        <version>5.2.0</version>
+        <version>8.0.0-SNAPSHOT</version>
     </parent>
+    
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-address-autocomplete</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>1.1.5-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <name>Lutece Address module for auto-completion</name>
+
     <repositories>
         <repository>
             <id>lutece</id>
             <name>luteceRepository</name>
-            <url>http://dev.lutece.paris.fr/maven_repository</url>
+            <url>https://dev.lutece.paris.fr/maven_repository</url>
             <layout>default</layout>
         </repository>
     </repositories>
+
     <dependencies>
         <dependency>
-            <groupId>fr.paris.lutece.plugins</groupId>
-            <artifactId>plugin-address</artifactId>
-            <version>[1.1.0,)</version>
-            <type>lutece-plugin</type>
+            <groupId>fr.paris.lutece</groupId>
+            <artifactId>lutece-core</artifactId>
+            <version>[8.0.0-SNAPSHOT,)</version>
+            <type>lutece-core</type>
         </dependency>
     </dependencies>
-    <properties>
-        <componentName>address-autocomplete</componentName>
-        <jiraProjectName>ADDRESSAUTOCOMPLETE</jiraProjectName>
-        <jiraComponentId>10661</jiraComponentId>
-    </properties>
+
     <scm>
         <connection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</url>
-      <tag>module-address-autocomplete-1.1.4</tag>
-  </scm>
+    </scm>
 </project>

@@ -37,13 +37,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.service.util.AppPathService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.portal.web.admin.PluginAdminPageJspBean;
 
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
+
+@SessionScoped
+@Named
 public class SuggestPOIJSPBean extends PluginAdminPageJspBean
 {
     /*
