@@ -30,9 +30,14 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <componentName>address-autocomplete</componentName>
+    </properties>
+
     <scm>
         <connection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-tech-module-address-autocomplete.git</url>
+        <tag>HEAD</tag>
     </scm>
 </project>
