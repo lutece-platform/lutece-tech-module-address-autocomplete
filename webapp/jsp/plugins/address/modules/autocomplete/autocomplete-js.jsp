@@ -1,7 +1,7 @@
 <% // Absence de cache pour cette page
-response.setHeader("Pragma", "no-cache");
-response.setHeader("Cache-Control", "no-cache");
-response.setDateHeader("Expires", 0);
+pageContext.response.setHeader("Pragma", "no-cache");
+pageContext.response.setHeader("Cache-Control", "no-cache");
+pageContext.response.setDateHeader("Expires", 0);
 %>
 <%@ page contentType="text/javascript" %>
 <%@ page import="fr.paris.lutece.portal.service.util.AppPropertiesService"%>
@@ -15,13 +15,13 @@ function createAutocomplete(jquerySelector) {
 			$(jquerySelector).each(function() {
 				//Create autocomplete inputs
 				$(this).autocomplete({
-					source: function(request, response) {
+					source: function(pageContext.request, pageContext.response) {
                    		$.ajax({
                       	 	url: '<%=AppPropertiesService.getProperty( "address-autocomplete.urlWS" ) %>',
                        		async: false,
                        		dataType: 'jsonp',
                        		data: {
-                        		 addressPrefix: request.term,
+                        		 addressPrefix: pageContext.request.term,
                           		 zone: '<%=AppPropertiesService.getProperty( "address-autocomplete.zone" ) %>',
                           		 date: '<%=AppPropertiesService.getProperty(  "address-autocomplete.date" ) %>',
 	                          	 maxResults: '<%=AppPropertiesService.getProperty("address-autocomplete.maxResults" ) %>',
@@ -36,7 +36,7 @@ function createAutocomplete(jquerySelector) {
 								
 								//Mise a jour de la liste deroulante
 								else {
-									response( $.map( data.result, function( item ) {
+									pageContext.response( $.map( data.result, function( item ) {
 										return {
 											label: item,
 											value: item
