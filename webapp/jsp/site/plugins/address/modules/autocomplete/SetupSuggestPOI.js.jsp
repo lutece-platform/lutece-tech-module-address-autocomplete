@@ -3,4 +3,4 @@
 
 <%@page import="fr.paris.lutece.plugins.address.modules.autocomplete.web.SuggestPOIJSPBean"%>
 
-${ suggestPOIJSPBean.getSetupSuggestPOIJavaScriptPortal( pageContext.request )}
+${ suggestPOIJSPBean.getSetupSuggestPOIJavaScriptPortal( pageContext.request ) }
