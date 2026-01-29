@@ -1,43 +1,25 @@
-(function($) {
+(function() {
+    'use strict';
 
-	// Script dynamique (par template) de mise en place de la configuration de l'appel à SuggestPOI
-	
-	var $LUTECE = window.LUTECE || (window.LUTECE = {});
-	var $MAA = $LUTECE.ADDRESS_AUTOCOMPLETE || ($LUTECE.ADDRESS_AUTOCOMPLETE = {});
-	var $config = $MAA.config || ($MAA.config = {});
-	
-	var PROP_WS_URL = "suggestPOI.ws.url";
-    var PROP_DATATYPE = "suggestPOI.ws.datatype";
-    var PROP_API_INPUT = "suggestPOI.ws.apiinput";
-    var PROP_UI_DELAY = "suggestPOI.ui.delay";
-    var PROP_PARAM_QUERY_MIN_LENGTH = "suggestPOI.param.query.minLength";
-    var PROP_ON_SELECT_UPDATE_DOM = "suggestPOI.param.onSelectUpdateDom";
-    var PROP_PARAM_TYPES_DEFAULT = "suggestPOI.param.types.default";
-    var PROP_PARAM_SRID_DEFAULT = "suggestPOI.param.srid.default";
-    var PROP_PARAM_BANTYPE_DEFAULT = "suggestPOI.param.bantype.default";
-    var PROP_PARAM_BANLAT_DEFAULT = "suggestPOI.param.banlat.default";
-    var PROP_PARAM_BANLON_DEFAULT = "suggestPOI.param.banlon.default";
-    var PROP_PARAM_BANPOSTCODE_DEFAULT = "suggestPOI.param.banpostcode.default";
-    var PROP_PARAM_BANCITYCODE_DEFAULT = "suggestPOI.param.bancitycode.default";
-    var PROP_PARAM_NB_RESULTS_DEFAULT = "suggestPOI.param.nbResults.default"
-    var PROP_PARAM_CLIENT_ID = "suggestPOI.param.clientId";
-    var PROP_PARAM_STOREADRFILTER_DEFAULT = "suggestPOI.param.storeadrfilter.default";
-    
-    $config[PROP_WS_URL] = "${ws_url}";
-    <#if ws_datatype??>$config[PROP_DATATYPE] = "${ws_datatype}";</#if>
-    <#if ws_apiinput??>$config[PROP_API_INPUT] = "${ws_apiinput}";</#if>
-    $config[PROP_UI_DELAY] = parseInt("${ui_delay}", 10);
-    $config[PROP_PARAM_QUERY_MIN_LENGTH] = parseInt("${param_query_minLength}", 10);
-    <#if param_onSelectUpdateDom??>$config[PROP_ON_SELECT_UPDATE_DOM] = "${param_onSelectUpdateDom}";</#if>
-    $config[PROP_PARAM_TYPES_DEFAULT] = "${param_types_default}";
-    <#if param_srid_default??>$config[PROP_PARAM_SRID_DEFAULT] = "${param_srid_default}";</#if>
-    <#if param_bantype_default??>$config[PROP_PARAM_BANTYPE_DEFAULT] = "${param_bantype_default}";</#if>
-    <#if param_banlat_default??>$config[PROP_PARAM_BANLAT_DEFAULT] = "${param_banlat_default}";</#if>
-    <#if param_banlon_default??>$config[PROP_PARAM_BANLON_DEFAULT] = "${param_banlon_default}";</#if>
-    <#if param_banpostcode_default??>$config[PROP_PARAM_BANPOSTCODE_DEFAULT] = "${param_banpostcode_default}";</#if>
-    <#if param_bancitycode_default??>$config[PROP_PARAM_BANCITYCODE_DEFAULT] = "${param_bancitycode_default}";</#if>
-    $config[PROP_PARAM_NB_RESULTS_DEFAULT] = parseInt("${param_nbResults_default}", 10);
-    $config[PROP_PARAM_CLIENT_ID] = "${param_clientId}";
-    <#if param_storeadrfilter_default??>$config[PROP_PARAM_STOREADRFILTER_DEFAULT] = "${param_storeadrfilter_default}";</#if>
-     
-})(jQuery);
+    var LUTECE = window.LUTECE || (window.LUTECE = {});
+    var ADDRESS_AUTOCOMPLETE = LUTECE.ADDRESS_AUTOCOMPLETE || (LUTECE.ADDRESS_AUTOCOMPLETE = {});
+    var config = ADDRESS_AUTOCOMPLETE.config || (ADDRESS_AUTOCOMPLETE.config = {});
+
+    config['suggestPOI.ws.url'] = "${ws_url}";
+    <#if ws_datatype??>config['suggestPOI.ws.datatype'] = "${ws_datatype}";</#if>
+    <#if ws_apiinput??>config['suggestPOI.ws.apiinput'] = "${ws_apiinput}";</#if>
+    config['suggestPOI.ui.delay'] = parseInt("${ui_delay}", 10);
+    config['suggestPOI.param.query.minLength'] = parseInt("${param_query_minLength}", 10);
+    <#if param_onSelectUpdateDom??>config['suggestPOI.param.onSelectUpdateDom'] = "${param_onSelectUpdateDom}";</#if>
+    config['suggestPOI.param.types.default'] = "${param_types_default}";
+    <#if param_srid_default??>config['suggestPOI.param.srid.default'] = "${param_srid_default}";</#if>
+    <#if param_bantype_default??>config['suggestPOI.param.bantype.default'] = "${param_bantype_default}";</#if>
+    <#if param_banlat_default??>config['suggestPOI.param.banlat.default'] = "${param_banlat_default}";</#if>
+    <#if param_banlon_default??>config['suggestPOI.param.banlon.default'] = "${param_banlon_default}";</#if>
+    <#if param_banpostcode_default??>config['suggestPOI.param.banpostcode.default'] = "${param_banpostcode_default}";</#if>
+    <#if param_bancitycode_default??>config['suggestPOI.param.bancitycode.default'] = "${param_bancitycode_default}";</#if>
+    config['suggestPOI.param.nbResults.default'] = parseInt("${param_nbResults_default}", 10);
+    config['suggestPOI.param.clientId'] = "${param_clientId}";
+    <#if param_storeadrfilter_default??>config['suggestPOI.param.storeadrfilter.default'] = "${param_storeadrfilter_default}";</#if>
+
+})();

@@ -1,13 +1,54 @@
 <#macro setupSuggestPOI>
-
 <#assign jspRoot="jsp/admin">
+<script src="${jspRoot}/plugins/address/modules/autocomplete/SetupSuggestPOI.js.jsp"></script>
+<script src="js/plugins/address/modules/autocomplete/suggestPOI.js"></script>
+</#macro>
 
-<link rel="stylesheet" type="text/css" href="js/jquery/plugins/ui/css/jquery-ui.css"/>
-
-<script type="text/javascript" src="js/jquery/plugins/ui/jquery.ui.custom-autocomplete.min.js"></script>
-<script type="text/javascript" src="js/jquery/jQuery.onReady.js"></script>
-
-<script type="text/javascript" src="${jspRoot}/plugins/address/modules/autocomplete/SetupSuggestPOI.js.jsp"></script>
-<script type="text/javascript" src="js/plugins/address/modules/autocomplete/jQuery.suggestPOI.js"></script>
-
+<#--
+Macro: suggestPOIInput
+Description: Creates the LuteceAutoComplete HTML structure for address autocomplete.
+             The SuggestPOI JS constructor configures the data attributes dynamically (URL, transformer, etc).
+Parameters:
+- id (string): the ID of the autocomplete container element.
+- name (string): the name attribute of the search input (submitted with the form).
+- currentValue (string, optional): pre-filled address value.
+- required (boolean, optional): whether the input is required.
+- cssClass (string, optional): additional CSS classes on the container.
+-->
+<#macro suggestPOIInput id name="" currentValue="" required=false cssClass="">
+<div id="${id}" class="lutece-autocomplete dropdown ${cssClass}"
+     data-itemValueFieldName="label"
+     data-itemTitleFieldNames='["label"]'
+     data-itemDescriptionFieldNames='[]'
+     data-itemTagsFieldNames='[]'
+     data-copyFields='[]'
+     data-minimumInputLength="3"
+     data-emptyLabel="Aucun r&eacute;sultat"
+     data-suggestionItemClass='["list-group-item", "p-3"]'
+     data-titleClass='["mb-0", "fw-bolder"]'
+     data-descriptionClass='["text-muted", "mb-0"]'
+     data-tagClass='["badge", "bg-blue-lt", "me-1"]'
+     data-loaderIconClasses='{"loading": [], "error": [], "search": []}'
+     data-emptyClass='["list-group-item", "p-3", "text-muted", "text-center"]'
+     data-searchLabel=""
+     data-allowFreeText="true">
+  <div class="input-group">
+    <input type="text" name="${name}" class="lutece-autocomplete-search-input form-control" value="${currentValue!}" id="${id}-input"
+           role="combobox" autocomplete="off" aria-expanded="false"
+           aria-owns="${id}-list-container" aria-autocomplete="list"
+           aria-describedby="${id}-assistiveHint"
+           <#if required>required</#if> />
+    <span role="button" class="input-group-text lutece-autocomplete-remove <#if !currentValue?has_content>d-none</#if> text-danger" title="Effacer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+    </span>
+    <span role="button" class="input-group-text lutece-autocomplete-search-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+    </span>
+  </div>
+  <div id="${id}-dropdown" class="lutece-autocomplete-dropdown dropdown-menu p-0" aria-labelledby="${id}-input">
+    <ul id="${id}-list-container" class="lutece-autocomplete-result-container list-group list-group-flush overflow-auto" role="listbox" aria-labelledby="${id}-input" style="max-height:15rem;"></ul>
+    <span id="${id}-assistiveHint" class="sr-only visually-hidden">Saisissez une adresse pour lancer la recherche</span>
+    <div class="sr-only lutece-autocomplete-status" role="status" aria-atomic="true" aria-live="polite"></div>
+  </div>
+</div>
 </#macro>
