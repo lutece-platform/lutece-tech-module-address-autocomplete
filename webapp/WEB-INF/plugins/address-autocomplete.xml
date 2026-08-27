@@ -9,8 +9,8 @@
     <installation/>
     <changes/>
     <user-guide/>
-    <description>module.address.autocomplete.plugin.description</description>
-    <provider>module.address.autocomplete.provider</provider>
+    <description>module.address.autocomplete.module.description</description>
+    <provider>module.address.autocomplete.module.provider</provider>
     <provider-url>http://lutece.paris.fr</provider-url>
     <icon-url/>
     <copyright>Copyright 2001-2025 Ville de Paris</copyright>
