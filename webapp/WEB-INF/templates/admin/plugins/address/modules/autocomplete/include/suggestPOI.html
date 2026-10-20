@@ -13,8 +13,12 @@ Parameters:
 - currentValue (string, optional): pre-filled address value.
 - required (boolean, optional): whether the input is required.
 - cssClass (string, optional): additional CSS classes on the container.
+- label (string, optional): the label of the search input, written in a <label> tied to it (id ${id}-input). Default: none.
+- labelledBy (string, optional): the id(s) of the element(s) of the caller that name the search input (aria-labelledby),
+  when the caller writes its own label. Default: none. Without label nor labelledBy, the caller must name the input.
 -->
-<#macro suggestPOIInput id name="" currentValue="" required=false cssClass="">
+<#macro suggestPOIInput id name="" currentValue="" required=false cssClass="" label="" labelledBy="">
+<#if label?has_content><label class="form-label" for="${id}-input">${label}</label></#if>
 <div id="${id}" class="lutece-autocomplete dropdown ${cssClass}"
      data-itemValueFieldName="label"
      data-itemTitleFieldNames='["label"]'
@@ -34,20 +38,21 @@ Parameters:
   <div class="input-group">
     <input type="text" name="${name}" class="lutece-autocomplete-search-input form-control" value="${currentValue!}" id="${id}-input"
            role="combobox" autocomplete="off" aria-expanded="false"
-           aria-owns="${id}-list-container" aria-autocomplete="list"
-           aria-describedby="${id}-assistiveHint"
+           aria-controls="${id}-list-container" aria-autocomplete="list"
+           aria-describedby="${id}-assistiveHint"<#if labelledBy?has_content> aria-labelledby="${labelledBy}"</#if>
            <#if required>required</#if> />
-    <span role="button" class="input-group-text lutece-autocomplete-remove <#if !currentValue?has_content>d-none</#if> text-danger" title="Effacer">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
-    </span>
-    <span role="button" class="input-group-text lutece-autocomplete-search-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+    <button type="button" class="input-group-text lutece-autocomplete-remove <#if !currentValue?has_content>d-none</#if> text-danger" title="Effacer" aria-label="Effacer">
+      <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+    </button>
+    <span class="input-group-text lutece-autocomplete-search-icon" aria-hidden="true">
+      <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
     </span>
   </div>
   <div id="${id}-dropdown" class="lutece-autocomplete-dropdown dropdown-menu p-0" aria-labelledby="${id}-input">
     <ul id="${id}-list-container" class="lutece-autocomplete-result-container list-group list-group-flush overflow-auto" role="listbox" aria-labelledby="${id}-input" style="max-height:15rem;"></ul>
     <span id="${id}-assistiveHint" class="sr-only visually-hidden">Saisissez une adresse pour lancer la recherche</span>
-    <div class="sr-only lutece-autocomplete-status" role="status" aria-atomic="true" aria-live="polite"></div>
   </div>
+  <#-- out of the dropdown, hidden (display: none) while it is closed: a live region must be rendered to be announced -->
+  <div class="sr-only visually-hidden lutece-autocomplete-status" role="status" aria-atomic="true" aria-live="polite"></div>
 </div>
 </#macro>
